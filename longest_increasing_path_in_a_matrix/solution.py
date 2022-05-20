@@ -11,35 +11,32 @@ class Solution:
             for x in range(x_length):
                 for y in range(y_length):
                     length = 1 # length variable for coordinate instance 
-                    path = [[-1 for j in range(y_length)] for i in range(x_length)] # matrix that tracks which order of the path & which squares have been visited.
-                    length = search(x, y, matrix, length, path)
+                    length = search(x, y, matrix, length)
                     if(length > max_length):
                         max_length = length
             return max_length
 
 # Return longest strictly-increasing path starting from (x,y). Works recursively.
-def search(x, y, matrix: List[List[int]], length, path: List[List[int]]):
-    saved_path = path
+def search(x, y, matrix: List[List[int]], length):
     x_length = len(matrix)
     y_length = len(matrix[0])
-    path = [[-1 for j in range(y_length)] for i in range(x_length)] # matrix that tracks which order of the path & which squares have been visited.
-    path[x][y] = length
+    saved_length = length
     path_length = 1
     # Check adjacent boxes
-    if(y-1 in range(0, len(matrix[0])) and path[x][y-1] == -1 and matrix[x][y-1] > matrix[x][y]):
-        path_length = search(x, y-1, matrix, path[x][y]+1, path)
+    if(y-1 in range(0, len(matrix[0])) and matrix[x][y-1] > matrix[x][y]):
+        path_length = search(x, y-1, matrix, saved_length+1)
         if(path_length > length):
             length = path_length
-    if(y+1 in range(0, len(matrix[0])) and path[x][y+1] == -1 and matrix[x][y+1] > matrix[x][y]):
-        path_length = search(x, y+1, matrix, path[x][y]+1, path)
+    if(y+1 in range(0, len(matrix[0])) and matrix[x][y+1] > matrix[x][y]):
+        path_length = search(x, y+1, matrix, saved_length+1)
         if(path_length > length):
             length = path_length
-    if(x-1 in range(0, len(matrix)) and path[x-1][y] == -1 and matrix[x-1][y] > matrix[x][y]):
-        path_length = search(x-1, y, matrix, path[x][y]+1, path)
+    if(x-1 in range(0, len(matrix)) and matrix[x-1][y] > matrix[x][y]):
+        path_length = search(x-1, y, matrix, saved_length+1)
         if(path_length > length):
             length = path_length
-    if(x+1 in range(0, len(matrix)) and path[x+1][y] == -1 and matrix[x+1][y] > matrix[x][y]):
-        path_length = search(x+1, y, matrix, path[x][y]+1, path)
+    if(x+1 in range(0, len(matrix)) and matrix[x+1][y] > matrix[x][y]):
+        path_length = search(x+1, y, matrix, saved_length+1)
         if(path_length > length):
             length = path_length
     return length
