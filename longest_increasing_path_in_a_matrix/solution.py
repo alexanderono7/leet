@@ -17,6 +17,7 @@ class Solution:
                     length = self.search(x, y, matrix, length, path)
                     if(length > max_length):
                         max_length = length
+                    print("max:" + str(max_length))
             return max_length
 
     # Return longest strictly-increasing path starting from (x,y). Works recursively.
@@ -25,23 +26,35 @@ class Solution:
         path[x][y] = length
         for f in path:
             print(f)
-        print("\n")
+        print("")
+        path_length = 1
         if(y-1 in range(0, len(matrix[0])) and path[x][y-1] == -1 and matrix[x][y-1] > matrix[x][y]):
-            path_length = self.search(x, y-1, matrix, length+1, path)
+            path_length = self.search(x, y-1, matrix, path[x][y]+1, path)
+            if(path_length > length):
+                length = path_length
             print("UP")
         if(y+1 in range(0, len(matrix[0])) and path[x][y+1] == -1 and matrix[x][y+1] > matrix[x][y]):
-            path_length = self.search(x, y+1, matrix, length+1, path)
+            path_length = self.search(x, y+1, matrix, path[x][y]+1, path)
+            if(path_length > length):
+                length = path_length
             print("DOWN")
         if(x-1 in range(0, len(matrix)) and path[x-1][y] == -1 and matrix[x-1][y] > matrix[x][y]):
-            path_length = self.search(x-1, y, matrix, length+1, path)
+            path_length = self.search(x-1, y, matrix, path[x][y]+1, path)
+            if(path_length > length):
+                length = path_length
             print("LEFT")
         if(x+1 in range(0, len(matrix)) and path[x+1][y] == -1 and matrix[x+1][y] > matrix[x][y]):
-            path_length = self.search(x+1, y, matrix, length+1, path)
+            path_length = self.search(x+1, y, matrix, path[x][y]+1, path)
+            if(path_length > length):
+                length = path_length
             print("RIGHT")
-        print("RETURN'D (" + str(length) + ")")
+        print("RETURN'D (" + str(path_length) + ")")
         return length
-
 
 foo = Solution()
 matrix = [[9,9,4],[6,6,8],[2,1,1]]
+matrix = [[3,4,5],[3,2,6],[2,2,1]]
+matrix = [[1]]
+print("\n"*9)
 print(foo.longestIncreasingPath(matrix))
+print("finale^")
