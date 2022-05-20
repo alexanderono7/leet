@@ -8,12 +8,13 @@ class Solution:
             max_length = 1
             x_length = len(matrix)
             y_length = len(matrix[0])
+            cache = [[-1 for j in range(y_length)] for i in range(x_length)]
             for x in range(x_length):
                 for y in range(y_length):
                     note("(" + str(x) + "," + str(y) + ")")
                     length = 1 # length variable for coordinate instance 
-                    cache = [[-1 for j in range(y_length)] for i in range(x_length)]
                     length = search(x, y, matrix, length, cache)
+                    cache[x][y] = length
                     if(length > max_length):
                         max_length = length
             return max_length
@@ -63,7 +64,6 @@ def search(x, y, matrix: List[List[int]], length, cache):
         if(path_length > length):
             length = path_length
     path_length = 1
-    cache[x][y] = length
     return length
 
 def note(string):
