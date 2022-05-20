@@ -1,0 +1,24 @@
+SEARCH():
+    max_length = 1
+    for x in range range_x:
+        for y in range_y:
+            if(cache[x][y] == -1):
+                cache = RECURSE(x, y, matrix, )
+            if(max_length < cache[x][y]):
+                max_length = cache[x][y]
+
+RECURSE(x, y, matrix, ):
+    max_length
+    if(cache[x][y] != -1):
+        return cache
+    else:
+        if(left exists AND left > center):
+            if(cache[left] == -1):
+                cache = RECURSE(left)
+            path = cache[left]
+            .
+            .
+            .
+        return
+
+
