@@ -10,6 +10,7 @@ class Solution:
             y_length = len(matrix[0])
             for x in range(x_length):
                 for y in range(y_length):
+                    print("(" + str(x) + "," + str(y) + ")")
                     length = 1 # length variable for coordinate instance 
                     path = [[-1 for j in range(y_length)] for i in range(x_length)] # matrix that tracks which order of the path & which squares have been visited.
                     length = self.search(x, y, matrix, length, path)
@@ -19,9 +20,13 @@ class Solution:
 
     # Return longest strictly-increasing path starting from (x,y). Works recursively.
     def search(self, x, y, matrix: List[List[int]], length, path: List[List[int]]):
-        # Check adjacent boxes
+        saved_path = path
         path[x][y] = length
         path_length = 1
+        for f in path:
+            print(f)
+        print("")
+        # Check adjacent boxes
         if(y-1 in range(0, len(matrix[0])) and path[x][y-1] == -1 and matrix[x][y-1] > matrix[x][y]):
             path_length = self.search(x, y-1, matrix, path[x][y]+1, path)
             if(path_length > length):
