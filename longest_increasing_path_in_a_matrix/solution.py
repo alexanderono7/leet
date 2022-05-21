@@ -1,11 +1,6 @@
 from typing import List
 
 class Solution:
-    matrix = None
-    x_length = None
-    y_length = None
-    x_range = None
-    y_range = None
     def longestIncreasingPath(self, matrix: List[List[int]]) -> int:
         if(matrix == None):
             return None
@@ -38,6 +33,11 @@ class Solution:
                 if(max_length < cache[x][y-1] + 1):
                     max_length = cache[x][y-1] + 1
 
+            if(y+1 in self.y_range and self.matrix[x][y+1] > self.matrix[x][y]):
+                if(cache[x][y+1] == -1):
+                    cache = self.search(x, y+1, cache)
+                if(max_length < cache[x][y+1] + 1):
+                    max_length = cache[x][y+1] + 1
 
             if(x-1 in self.x_range and self.matrix[x-1][y] > self.matrix[x][y]):
                 if(cache[x-1][y] == -1):
