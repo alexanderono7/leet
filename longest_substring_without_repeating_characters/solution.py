@@ -12,9 +12,9 @@ class Solution:
                 if(max_length < len(current)):
                     max_length = len(current)
                 current = current[current.index(a)+1:]
-                current += a
             except:
-                current += a
+                pass
+            current += a
         if(max_length < len(current)):
             max_length = len(current)
         return max_length
