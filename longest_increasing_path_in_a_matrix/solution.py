@@ -19,40 +19,40 @@ class Solution:
             max_length = 1
             for x in range(self.x_length):
                 for y in range(self.y_length):
-                    cache = self.search(x, y, matrix, cache)
+                    cache = self.search(x, y, cache)
                     if(max_length < cache[x][y]):
                         max_length = cache[x][y]
             return max_length
 
 
 # Return longest strictly-increasing path starting from (x,y). Works recursively.
-    def search(self, x, y, matrix, cache):
+    def search(self, x, y, cache):
         max_length = 1
         if(cache[x][y] != -1):
             return cache
         # Check adjacent boxes
         else:
-            if(y-1 in self.y_range and matrix[x][y-1] > matrix[x][y]):
+            if(y-1 in self.y_range and self.matrix[x][y-1] > self.matrix[x][y]):
                 if(cache[x][y-1] == -1):
-                    cache = self.search(x, y-1, matrix, cache)
+                    cache = self.search(x, y-1, cache)
                 if(max_length < cache[x][y-1] + 1):
                     max_length = cache[x][y-1] + 1
 
-            if(y+1 in self.y_range and matrix[x][y+1] > matrix[x][y]):
+            if(y+1 in self.y_range and self.matrix[x][y+1] > self.matrix[x][y]):
                 if(cache[x][y+1] == -1):
-                    cache = self.search(x, y+1, matrix, cache)
+                    cache = self.search(x, y+1, cache)
                 if(max_length < cache[x][y+1] + 1):
                     max_length = cache[x][y+1] + 1
 
-            if(x-1 in self.x_range and matrix[x-1][y] > matrix[x][y]):
+            if(x-1 in self.x_range and self.matrix[x-1][y] > self.matrix[x][y]):
                 if(cache[x-1][y] == -1):
-                    cache = self.search(x-1, y, matrix, cache)
+                    cache = self.search(x-1, y, cache)
                 if(max_length < cache[x-1][y] + 1):
                     max_length = cache[x-1][y] + 1
 
-            if(x+1 in self.x_range and matrix[x+1][y] > matrix[x][y]):
+            if(x+1 in self.x_range and self.matrix[x+1][y] > self.matrix[x][y]):
                 if(cache[x+1][y] == -1):
-                    cache = self.search(x+1, y, matrix, cache)
+                    cache = self.search(x+1, y, cache)
                 if(max_length < cache[x+1][y] + 1):
                     max_length = cache[x+1][y] + 1
 
