@@ -1,11 +1,6 @@
 from typing import List
 
 class Solution:
-    matrix = None
-    x_length = None
-    y_length = None
-    x_range = None
-    y_range = None
     def longestIncreasingPath(self, matrix: List[List[int]]) -> int:
         if(matrix == None):
             return None
