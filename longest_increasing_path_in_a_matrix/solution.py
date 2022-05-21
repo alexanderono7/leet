@@ -33,11 +33,6 @@ class Solution:
                 if(max_length < cache[x][y-1] + 1):
                     max_length = cache[x][y-1] + 1
 
-            if(y+1 in self.y_range and self.matrix[x][y+1] > self.matrix[x][y]):
-                if(cache[x][y+1] == -1):
-                    cache = self.search(x, y+1, cache)
-                if(max_length < cache[x][y+1] + 1):
-                    max_length = cache[x][y+1] + 1
 
             if(x-1 in self.x_range and self.matrix[x-1][y] > self.matrix[x][y]):
                 if(cache[x-1][y] == -1):
