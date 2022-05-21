@@ -13,7 +13,6 @@ class Solution:
             max_length = 1
             for x in range(x_length):
                 for y in range(y_length):
-                    note("(" + str(x) + "," + str(y) + ")")
                     cache = search(x, y, matrix, cache)
                     if(max_length < cache[x][y]):
                         max_length = cache[x][y]
@@ -22,9 +21,6 @@ class Solution:
 
 # Return longest strictly-increasing path starting from (x,y). Works recursively.
 def search(x, y, matrix, cache):
-    for f in cache:
-        note(f)
-    print("")
     max_length = 1
     if(cache[x][y] != -1):
         return cache
