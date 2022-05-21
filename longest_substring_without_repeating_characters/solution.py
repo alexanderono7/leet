@@ -8,7 +8,6 @@ class Solution:
         current = ""
         for a in s:
             try:
-                position = current.index(a)+1
                 if(max_length < len(current)): max_length = len(current)
                 current = current[current.index(a)+1:]
             except: pass
