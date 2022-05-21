@@ -6,18 +6,16 @@ class Solution:
             return None
         max_length = 0
         current = ""
+        lengths = []
         for a in s:
             try:
                 position = current.index(a)+1
-                if(max_length < len(current)):
-                    max_length = len(current)
+                lengths.append(len(current))
                 current = current[current.index(a)+1:]
-            except:
-                pass
+            except: pass
             current += a
-        if(max_length < len(current)):
-            max_length = len(current)
-        return max_length
+        lengths.append(len(current))
+        return max(lengths)
 
         
 foo = Solution()
