@@ -1,10 +1,10 @@
 import re
 class Solution:
     def myAtoi(self, s: str) -> int:
-        match = re.match(r'\s*(-?\d+)', s)
+        match = re.match(r'\s*((-|\+)?\d+)', s)
         if(match == None):
-            return None
-        match = int(match.group(1))
+            return 0
+        match = int(match.group(0))
         if(match > (2**31 - 1)):
             return 2**31 - 1
         if(match < (-2**31)):
@@ -13,7 +13,8 @@ class Solution:
 
 foo = Solution()
 print("========================================")
-(foo.myAtoi("banana--123obama"))
-(foo.myAtoi("42"))
-(foo.myAtoi("        -42"))
-(foo.myAtoi("4193 with words"))
+print(foo.myAtoi("banana--123obama"))
+print(foo.myAtoi("42"))
+print(foo.myAtoi("        -42"))
+print(foo.myAtoi("4193 with words"))
+print(foo.myAtoi("+1"))
