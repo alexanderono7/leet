@@ -5,62 +5,57 @@ class Solution:
         if(matrix == None):
             return None
         else:
-            max_length = 1
+            global x_length
+            global y_length
             x_length = len(matrix)
             y_length = len(matrix[0])
             cache = [[-1 for j in range(y_length)] for i in range(x_length)]
+            max_length = 1
             for x in range(x_length):
                 for y in range(y_length):
                     note("(" + str(x) + "," + str(y) + ")")
-                    length = 1 # length variable for coordinate instance 
-                    length = search(x, y, matrix, length, cache)
-                    if(length > max_length):
-                        max_length = length
+                    cache = search(x, y, matrix, cache)
+                    if(max_length < cache[x][y]):
+                        max_length = cache[x][y]
             return max_length
 
 
 # Return longest strictly-increasing path starting from (x,y). Works recursively.
-def search(x, y, matrix: List[List[int]], length, cache):
-    saved_length = length
-    path_length = 1
+def search(x, y, matrix, cache):
     for f in cache:
         note(f)
     print("")
+    max_length = 1
+    if(cache[x][y] != -1):
+        return cache
     # Check adjacent boxes
-    if(y-1 in range(0, len(matrix[0])) and matrix[x][y-1] > matrix[x][y]):
-        if(cache[x][y-1] != -1):
-            path_length = saved_length
-            path_length += cache[x][y-1]
-        else:
-            path_length = search(x, y-1, matrix, saved_length+1, cache)
-        if(path_length > length):
-            length = path_length
-    if(y+1 in range(0, len(matrix[0])) and matrix[x][y+1] > matrix[x][y]):
-        if(cache[x][y+1] != -1):
-            path_length = saved_length
-            path_length += cache[x][y+1]
-        else:
-            path_length = search(x, y+1, matrix, saved_length+1, cache)
-        if(path_length > length):
-            length = path_length
-    if(x-1 in range(0, len(matrix)) and matrix[x-1][y] > matrix[x][y]):
-        if(cache[x-1][y] != -1):
-            path_length = saved_length
-            path_length += cache[x-1][y]
-        else:
-            path_length = search(x-1, y, matrix, saved_length+1, cache)
-        if(path_length > length):
-            length = path_length
-    if(x+1 in range(0, len(matrix)) and matrix[x+1][y] > matrix[x][y]):
-        if(cache[x+1][y] != -1):
-            path_length = saved_length
-            path_length += cache[x+1][y]
-        else:
-            path_length = search(x+1, y, matrix, saved_length+1, cache)
-        if(path_length > length):
-            length = path_length
-    cache[x][y] = saved_length
-    return length
+    else:
+        if(y-1 in range(0, y_length) and matrix[x][y-1] > matrix[x][y]):
+            if(cache[x][y-1] == -1):
+                cache = search(x, y-1, matrix, cache)
+            if(max_length < cache[x][y-1] + 1):
+                max_length = cache[x][y-1] + 1
+
+        if(y+1 in range(0, y_length) and matrix[x][y+1] > matrix[x][y]):
+            if(cache[x][y+1] == -1):
+                cache = search(x, y+1, matrix, cache)
+            if(max_length < cache[x][y+1] + 1):
+                max_length = cache[x][y+1] + 1
+
+        if(x in range(0, x_length) and matrix[x-1][y] > matrix[x][y]):
+            if(cache[x-1][y] == -1):
+                cache = search(x, y, matrix, cache)
+            if(max_length < cache[x-1][y] + 1):
+                max_length = cache[x-1][y] + 1
+
+        if(x in range(0, x_length) and matrix[x+1][y] > matrix[x][y]):
+            if(cache[x+1][y] == -1):
+                cache = search(x, y, matrix, cache)
+            if(max_length < cache[x+1][y] + 1):
+                max_length = cache[x+1][y] + 1
+
+        cache[x][y] = max_length
+        return cache
 
 def note(string):
     if(switch):
