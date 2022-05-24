@@ -1,0 +1,15 @@
+def medianSearch(list1, list2):
+    n = len(list1)
+
+    target = (n + m) >> 1
+    current = target + 1
+    y = b = 0
+    foo = list1
+    bar = list2
+    a = len(foo)
+    b = len(bar)
+    c = foo[len(foo) >> 1]
+    while(current != target):
+
+
+def binarySearch(
