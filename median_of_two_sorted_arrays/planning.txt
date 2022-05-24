@@ -1,15 +1,5 @@
-def medianSearch(list1, list2):
-    n = len(list1)
-
-    target = (n + m) >> 1
-    current = target + 1
-    y = b = 0
-    foo = list1
-    bar = list2
-    a = len(foo)
-    b = len(bar)
-    c = foo[len(foo) >> 1]
-    while(current != target):
-
-
-def binarySearch(
+"The median element must be greater than (n+m)/2 of the elements". However, this is not necessarily true. E.g.:
+5 5 5 5 (5) 5 6 7 8
+In the above list, 5 is the median element, but it is not greater than 50% of the elements due to repetitions. In fact, it is greater than 0% of the
+elements; 5 is the smallest element value and also the median. If you were to do an index search of 5, it would not be able to place 5 as the median
+of this list... However, 5 is greater than or equal to 50% of the list while also less than or equal to 50% of the list.
