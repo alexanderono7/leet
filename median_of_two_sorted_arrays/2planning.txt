@@ -1,0 +1,4 @@
+After we know where 'med' would be placed in a list, we know whether the true median must be less than or greater than 'med' (if 'med' itself is not
+the median)
+
+
